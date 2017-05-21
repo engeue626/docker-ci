@@ -29,6 +29,12 @@ RUN add-apt-repository \
 
 RUN apt-get update && apt-get install -y docker-ce
 
+#ARG SYSTEM_TYPE=Linux
+#ARG PROCESSOR_TYPE=x86_64
+
+#RUN curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
+#     chmod +x /usr/local/bin/docker-compose
+
 
 ARG MAVEN_VERSION=3.5.0
 ARG USER_HOME_DIR="/root"
@@ -50,5 +56,6 @@ RUN chmod +x /usr/local/bin/dind
 ADD ./wrapdocker /usr/local/bin/wrapdocker
 RUN chmod +x /usr/local/bin/wrapdocker
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 CMD ["/usr/bin/supervisord"]
 
